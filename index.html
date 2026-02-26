@@ -1,4 +1,5 @@
-<!-- <!DOCTYPE html>
+<!-- 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,8 +8,21 @@
 </head>
 
 <body>
+
+    Ajouter un form
+
+    Ajouter un label qui est égal à l'input sur l'id
+
     <input id="word" />
+
+    Ajouter un type submit au bouton
+
+    Enlever le onClick (on est pas en React ici), le mettre en JS
+
     <button onclick="guess()">Ok</button>
+
+    Après le form créer une liste
+
     <p id="try"></p>
     <p id="well"></p>
     <p id="miss"></p>
@@ -30,19 +44,29 @@
 </head>
 
 <body>
-    <!-- Ajouter un form  -->
-    <!-- Ajouter un label  qui est égal à l'input sur l'id-->
-    <input id="word" />
-    <!-- Ajouter un type submit au bouton  -->
-    <!-- Enlever le onClick (on est pas en React ici), le mettre en JS  -->
-    <button onclick="guess()">Ok</button> // ??
 
-    <!-- Après le form créer une liste  -->
-    <p id="try"></p>
-    <p id="well"></p>
-    <p id="miss"></p>
-    <p id="not"></p>
-    <p id="win"></p>
+    <form>
+
+        <label for="word" id="word" name="word"> Veuillez saisir le mot que vous souhaitez tester : </label>
+        <br>
+
+        <input id="word" name="word" type="text" />
+
+        <button type="submit">Ok</button>
+    </form>
+
+    <fieldset>
+
+        <p>Résultats : </p>
+
+        <ul>
+            <li id="try"></li>
+            <li id="well"></li>
+            <li id="miss"></li>
+            <li id="not"></li>
+            <li id="win"></li>
+        </ul>
+    </fieldset>
 
 </body>
 <script src="script.js"></script>
