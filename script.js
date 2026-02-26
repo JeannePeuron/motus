@@ -8,21 +8,25 @@ function tryWord(word, base) {
     let notInWord = []; // Les lettres qui ne sont pas dans le mot.
     let missplaced = []; // Les lettres mal placées.
 
-    let arrayBase = base.split("");
-    console.log(arrayBase); // Je met un console.log parce que je ne sais pas ce que ça donne
-    let arrayWord = word.split("");
+    let arrayBase = base.split(""); // Chaque lettre  est séparée "d","i","c"...
+
+    let arrayWord = word.split(""); // Chaque lettre  est séparée
 
     for (let i = 0; i < arrayBase.length - 1; i++) {
+      // On boucle sur toutes les lettres du mot à deviner
       if (arrayBase[i] === arrayWord[i]) {
-        wellPlaced.push(arrayWord[i]);
+        // Si la lettre [i] est égale à la lettre du mot donné
+        wellPlaced.push(arrayWord[i]); // On pousse la lettre du mot donné dans le tableau des lettres bien placées
       } else {
-        missplaced.push(arrayWord[i]);
+        missplaced.push(arrayWord[i]); // Sinon on pousse la lettre dans le tableau des lettres mal placées
       }
     }
 
     for (const char of arrayWord) {
+      // On boucle sur le mot donné
       if (arrayBase.includes(char) === false) {
-        notInWord.push(char);
+        // Si les lettres contenues dans le mot donnée ne sont pas égales au lettres du mot à deviner
+        notInWord.push(char); // On pousse les lettres en question dans le tableau des lettres qui ne sont pas dans le mot.
       }
     }
 
@@ -31,22 +35,28 @@ function tryWord(word, base) {
       missplaced: missplaced,
       notInWord: notInWord,
     };
+
+    // Le return retourne un objet contenant des tableaux !
   }
 }
 
+// Faire un listener sur le bouton pour déclencher guess qui déclenche tryWord
+
 function guess() {
-  let base = "dictionnaire";
-  let word = document.getElementById("word").value;
-  let result = tryWord(word, base); // Le return ne la fonction est trois tableaux.
-  document.getElementById("word").value = "";
-  document.getElementById("try").innerText = word;
+  // La fonction qui doit se déclencher au clic sur "ok"
+  let base = "dictionnaire"; // Le mot à deviner
+  let word = document.getElementById("word").value; // On récupère la valeur de l'input pour le passer en paramètre de la fonction tryWord
+  let result = tryWord(word, base); // On stock le return de tryWord dans une variable
+  document.getElementById("word").value = ""; // Nécessaire ?
+  document.getElementById("try").innerText = word; // On ajoute le mot dans la liste try
   document.getElementById("well").innerText =
-    "Bien placé: " + result.wellPlaced.join(", ");
+    "Bien placé: " + result.wellPlaced.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
   document.getElementById("miss").innerText =
-    "Mal placé: " + result.missplaced.join(", ");
+    "Mal placé: " + result.missplaced.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
   document.getElementById("not").innerText =
-    "Pas dans le mot: " + result.notInWord.join(", ");
+    "Pas dans le mot: " + result.notInWord.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
   if (result.wellPlaced.length === base.length) {
+    // Si le résultat de wellPlaced est égal à la base on gagne
     document.getElementById("win").innerText = "Vous avez gagné";
   }
 }
