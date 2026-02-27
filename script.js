@@ -12,9 +12,9 @@ function tryWord(word, base) {
 
     let arrayWord = word.split(""); // Chaque lettre  est séparée
 
-    for (let i = 0; i < arrayBase.length - 1; i++) {
-      // On boucle sur toutes les lettres du mot à deviner
-      if (arrayBase[i] === arrayWord[i]) {
+    for (let i = 0; i < arrayWord.length - 1; i++) {
+      // On boucle sur le mot testé plutôt que sur le mot à deviner (plus propre)
+      if (arrayWord[i] === arrayBase[i]) {
         // Si la lettre [i] est égale à la lettre du mot donné
         wellPlaced.push(arrayWord[i]); // On pousse la lettre du mot donné dans le tableau des lettres bien placées
       } else {
@@ -23,9 +23,9 @@ function tryWord(word, base) {
     }
 
     for (const char of arrayWord) {
-      // On boucle sur le mot donné
+      // On boucle sur le mot testé
       if (arrayBase.includes(char) === false) {
-        // Si les lettres contenues dans le mot donnée ne sont pas égales au lettres du mot à deviner
+        // Si les lettres contenues dans le mot testé ne sont pas égales au lettres du mot à deviner
         notInWord.push(char); // On pousse les lettres en question dans le tableau des lettres qui ne sont pas dans le mot.
       }
     }
@@ -56,13 +56,17 @@ function guess() {
   document.getElementById("word").value = ""; // Nécessaire ?
   document.getElementById("try").innerText = word; // On ajoute le mot dans la liste try
   document.getElementById("well").innerText =
-    "Bien placé: " + result.wellPlaced.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
+    "Bien placé: " + result.wellPlaced.join("- "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
   document.getElementById("miss").innerText =
-    "Mal placé: " + result.missplaced.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
+    "Mal placé: " + result.missplaced.join("- "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
   document.getElementById("not").innerText =
-    "Pas dans le mot: " + result.notInWord.join(", "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
+    "Pas dans le mot: " + result.notInWord.join("- "); // Vérifier aue ça ajoute bien le tableau pourquoi join ?
+
   if (result.wellPlaced.length === base.length) {
     // Si le résultat de wellPlaced est égal à la base on gagne
     document.getElementById("win").innerText = "Vous avez gagné";
   }
 }
+
+// Les lettres qui ne sont pas dans le mot se mettent aussi dans le malplacé.
+// Le win ne s'affiche pas : peut-être mettre une boucle avec un if dans la fonction tryWord ??
