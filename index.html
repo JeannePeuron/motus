@@ -1,37 +1,3 @@
-<!-- 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Motus</title>
-</head>
-
-<body>
-
-    Ajouter un form
-
-    Ajouter un label qui est égal à l'input sur l'id
-
-    <input id="word" />
-
-    Ajouter un type submit au bouton
-
-    Enlever le onClick (on est pas en React ici), le mettre en JS
-
-    <button onclick="guess()">Ok</button>
-
-    Après le form créer une liste
-
-    <p id="try"></p>
-    <p id="well"></p>
-    <p id="miss"></p>
-    <p id="not"></p>
-    <p id="win"></p>
-</body>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -47,12 +13,12 @@
 
     <form>
 
-        <label for="word" id="word" name="word"> Veuillez saisir le mot que vous souhaitez tester : </label>
+        <label for="word"> Veuillez saisir le mot que vous souhaitez tester : </label>
         <br>
 
         <input id="word" name="word" type="text" />
 
-        <button type="submit">Ok</button>
+        <button type="submit" id="submit">Ok</button>
     </form>
 
     <fieldset>

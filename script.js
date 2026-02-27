@@ -40,10 +40,16 @@ function tryWord(word, base) {
   }
 }
 
-// Faire un listener sur le bouton pour déclencher guess qui déclenche tryWord
+// L'appel de la fonction guess est fait dans le HTML.
+// Récupérer le bouton dans le dom et appelé guess au clic avec un addEventListerner et empêcher le rechargement
 
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  guess();
+}); // empêche le rechargement
 function guess() {
-  // La fonction qui doit se déclencher au clic sur "ok"
+  //   La fonction qui doit se déclencher au clic sur "ok"
+
   let base = "dictionnaire"; // Le mot à deviner
   let word = document.getElementById("word").value; // On récupère la valeur de l'input pour le passer en paramètre de la fonction tryWord
   let result = tryWord(word, base); // On stock le return de tryWord dans une variable
@@ -60,6 +66,3 @@ function guess() {
     document.getElementById("win").innerText = "Vous avez gagné";
   }
 }
-
-// L'appel de la fonction guess est fait dans le HTML.
-// Récupérer le bouton dans le dom et appelé guess au clic avec un addEventListerner
